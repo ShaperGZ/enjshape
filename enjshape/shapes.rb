@@ -45,7 +45,7 @@ class Polygon < Shape
     if pushpull[0] != "---"
       dbf = pushpull[1]
       rec = dbf.record(@recnum) #get corresponding record
-      pp = rec.attributes()[pushpull[0]]  #get the value from the column of this record
+      pp = rec.attributes()[pushpull[0]].to_f  #get the value from the column of this record
       if pushpull[2] == "meters"
         pp = pp.m
       else

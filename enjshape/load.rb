@@ -253,7 +253,7 @@ def loadShapeFile()
       dpp = d.get_element_value("pushpull")
       dpp_i = d.get_element_value("pushpull_i").to_f
       #puts "#{dpp} and #{dpp_i}"
-      if dpp == "---" and dpp_i > 0
+      if dpp == "---" and dpp_i >= 0
         pushpull = [dpp, dpp_i]
       else
         pushpull = [dpp, dbf, d.get_element_value("pp_units")] #going to pass the column name as well as the dbf reader
