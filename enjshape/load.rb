@@ -259,6 +259,7 @@ def loadShapeFile()
         pushpull = [dpp, dbf, d.get_element_value("pp_units")] #going to pass the column name as well as the dbf reader
       end
     else
+      puts "shapetype: #{shape.shptype}"
       pushpull = ["---", 0]
     end
     

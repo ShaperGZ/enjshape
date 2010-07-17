@@ -174,7 +174,7 @@ class Point < Shape
     #return Geom::Point3d.new(@x, @y, z)
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     entities.add_cpoint(point3d(flatten))
   end
   
@@ -199,7 +199,7 @@ class MultiPoint < Shape
     (0...@numpoints).each { |a| p = Point.new(@recnum, @units); p.parse(reader); @points << p }
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     @points.each { |p| p.render(entities, flatten) }
   end
 end
@@ -227,7 +227,7 @@ class Arc < Shape
     (0...@numpoints).each { |a| p = Point.new(@recnum, @units); p.parse(reader); @points << p }
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     if @numparts > 1
       (0...@numparts).each do |r|
         #puts "recnum: #{@recnum} part: #{r}"
@@ -264,7 +264,7 @@ class PointM < Point
     @m = reader.read_double()
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     super(entities, flatten)
   end
 end
@@ -284,7 +284,7 @@ class MultiPointM < MultiPoint
     (0...@numpoints).each { |a| @m << reader.read_double() }
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     super(entities, flatten)
   end
 end
@@ -304,7 +304,7 @@ class ArcM < Arc
     (0...@numpoints).each { |a| @m << reader.read_double() }
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     super(entities, flatten)
   end
 end
@@ -324,7 +324,7 @@ class PolygonM < Polygon
     (0...@numpoints).each { |a| @m << reader.read_double() }
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     super(entities, flatten)
   end
 end
@@ -346,7 +346,7 @@ class PointZ < Point
     @m = reader.read_double()
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     super(entities, flatten)
   end
 end
@@ -369,7 +369,7 @@ class MultiPointZ < MultiPoint
     (0...@numpoints).each { |a| @m << reader.read_double() }
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     super(entities, flatten)
   end
 end
@@ -392,7 +392,7 @@ class ArcZ < Arc
     (0...@numpoints).each { |a| @m << reader.read_double() }
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     super(entities, flatten)
   end
 end
@@ -415,7 +415,7 @@ class PolygonZ < Polygon
     (0...@numpoints).each { |a| @m << reader.read_double() }
   end
   
-  def render(entities, flatten)
+  def render(entities, flatten, pushpull)
     super(entities, flatten)
   end
 end
